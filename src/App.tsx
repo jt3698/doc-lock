@@ -3,6 +3,7 @@ import { Auth } from 'aws-amplify';
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css'
 import { useState } from 'react';
+import UserDetails from './components/UserDetails';
 
 function App() {
   const env = process.env.NODE_ENV;
@@ -15,7 +16,6 @@ function App() {
     })
       .then((user) => {
         setEmail(user.attributes.email)
-        console.log(user.attributes.email)
       })
       .catch((err) => console.log(err));
   }
@@ -38,6 +38,10 @@ function App() {
             </div>
         )}}
       </Authenticator>  
+
+      <div>
+      <UserDetails email={email}></UserDetails>
+      </div>
     </div>
   );
 }

@@ -2,10 +2,5 @@
   "AppSyncApiName": "DocLock",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthCognitoUserPoolId": {
-    "Fn::GetAtt": [
-      "authdoclock74b8bcb4",
-      "Outputs.UserPoolId"
-    ]
-  }
+  "AuthModeLastUpdated": "2023-05-03T04:42:35.395Z"
 }

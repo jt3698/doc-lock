@@ -1,4 +1,4 @@
-type Users @model @auth(rules: [{allow: public}, {allow: owner}]) {
+type Users @model @auth(rules: [{allow: public}]) {
   id: ID
   email: String!
   admin: Boolean

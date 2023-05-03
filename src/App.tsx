@@ -4,8 +4,8 @@ import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css'
 import { useState } from 'react';
 import UserDetails from './components/UserDetails';
-import { DataStore } from '@aws-amplify/datastore';
-import { Users } from './models';
+import { API } from "aws-amplify";
+import { getUsers } from "./graphql/queries";
 
 function App() {
   const env = process.env.NODE_ENV;
@@ -15,9 +15,19 @@ function App() {
   const [role, setRole] = useState("null");
 
   const GetRole = async (userID: any) => {
-    const user = await DataStore.query(Users, userID);
-    const role = user? ((user?.admin) ? "Admin" : "Member") : "NULL";
-    
+    const user : any = await API.graphql({
+      query: getUsers,
+      variables: { id: userID }
+    });
+    const isAdmin = user?.data?.getUsers?.admin;
+
+    let role = "X";
+    if (isAdmin == null) {
+      role = "NULL";
+    } else {
+      role = isAdmin ? "Admin" : "Member";
+    }
+
     return role;
   }
 

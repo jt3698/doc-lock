@@ -21,7 +21,7 @@
       "function": {
         "userConfirmed": {
           "deploymentBucketName": "amplify-doclock-dev-112308-deployment",
-          "s3Key": "amplify-builds/userConfirmed-665369382b6632357279-build.zip",
+          "s3Key": "amplify-builds/userConfirmed-476b726e6b39382b4c35-build.zip",
           "usersTableName": "Users-uunrk5ysuvbldlzr247cmz6qka-dev"
         }
       }

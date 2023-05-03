@@ -20,12 +20,15 @@ exports.handler = async (event) => {
 // Function createUser
 // Writes message to DynamoDb table Message 
 async function createUser(userAttributes) {
+    const now = new Date();
     const params = {
         TableName: process.env.UsersTableName,
         Item: {
           'id': userAttributes.sub,
           'email': userAttributes.email,
-          'admin': false
+          'admin': false,
+          'createdAt': now.toISOString(),
+          'updatedAt': now.toISOString()
         }
     }
     return ddb.put(params).promise();

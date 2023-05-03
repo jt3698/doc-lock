@@ -2,5 +2,5 @@
   "AppSyncApiName": "DocLock",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2023-05-03T04:42:35.395Z"
+  "AuthModeLastUpdated": "2023-05-03T04:42:18.488Z"
 }

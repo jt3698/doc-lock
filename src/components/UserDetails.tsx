@@ -1,8 +1,19 @@
-import { DataStore, syncExpression } from '@aws-amplify/datastore';
-import { Users } from '../models';
+import { API } from "aws-amplify";
+import { listUsers, getUsers } from "../graphql/queries";
 
 async function logUserDetails(userID: any) {
-    const user = await DataStore.query(Users, userID);
+    // List all items
+    const allUsers = await API.graphql({
+        query: listUsers
+    });
+    console.log(allUsers);
+
+    // Get a specific item
+    const user = await API.graphql({
+        query: getUsers,
+        variables: { id: userID }
+    });
+    
     console.log(user);
 }
 

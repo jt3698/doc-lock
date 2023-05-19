@@ -21,6 +21,9 @@
       },
       "auth": {
         "doclock74b8bcb4": {}
+      },
+      "api": {
+        "DocLock": {}
       }
     }
   },
@@ -46,6 +49,9 @@
       },
       "auth": {
         "doclock74b8bcb4": {}
+      },
+      "api": {
+        "DocLock": {}
       }
     }
   }

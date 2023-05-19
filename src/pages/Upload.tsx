@@ -6,13 +6,17 @@ function UploadPage() {
     const [productName, setProductName] = useState('');
 
     const getLatestApprovedVersion = () => {
-        GetLatestApproved().then((latest_ver) => setVersion(latest_ver));
-        GetForm("xxx-xxx").then((form) => setProductName(form.productName));
+        GetLatestApproved().then(({versionNumber, formID}) => {
+            GetForm(formID).then((form) => {
+                setVersion(versionNumber);
+                setProductName(form.productName)
+            });
+        });
     }
 
     const uploadChanges = () => {
-        UploadForm().then((formId) => {
-            UploadVersion(formId).then(() => console.log("Changes uploaded"));
+        UploadForm(productName).then((formId) => {
+            UploadVersion(version + 1, formId).then(() => console.log("Changes uploaded"));
         })
     }
 

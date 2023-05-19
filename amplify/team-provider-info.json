@@ -1,32 +1,4 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-doclock-dev-112308-authRole",
-      "UnauthRoleArn": "arn:aws:iam::003991958217:role/amplify-doclock-dev-112308-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::003991958217:role/amplify-doclock-dev-112308-authRole",
-      "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-doclock-dev-112308-deployment",
-      "UnauthRoleName": "amplify-doclock-dev-112308-unauthRole",
-      "StackName": "amplify-doclock-dev-112308",
-      "StackId": "arn:aws:cloudformation:us-east-2:003991958217:stack/amplify-doclock-dev-112308/e4558c30-e7d7-11ed-b0b0-06b637622445",
-      "AmplifyAppId": "d6a4prq4t75un"
-    },
-    "categories": {
-      "auth": {
-        "doclock74b8bcb4": {}
-      },
-      "api": {
-        "DocLock": {}
-      },
-      "function": {
-        "userConfirmed": {
-          "deploymentBucketName": "amplify-doclock-dev-112308-deployment",
-          "s3Key": "amplify-builds/userConfirmed-476b726e6b39382b4c35-build.zip",
-          "usersTableName": "Users-uunrk5ysuvbldlzr247cmz6qka-dev"
-        }
-      }
-    }
-  },
   "prod": {
     "awscloudformation": {
       "AuthRoleName": "amplify-doclock-prod-122421-authRole",
@@ -40,18 +12,40 @@
       "AmplifyAppId": "d6a4prq4t75un"
     },
     "categories": {
-      "auth": {
-        "doclock74b8bcb4": {}
-      },
       "function": {
         "userConfirmed": {
+          "usersTableName": "Users-nwgpf56twzblbpiu7isouymtm4-prod",
           "deploymentBucketName": "amplify-doclock-prod-122421-deployment",
-          "s3Key": "amplify-builds/userConfirmed-665369382b6632357279-build.zip",
-          "usersTableName": "Users-nwgpf56twzblbpiu7isouymtm4-prod"
+          "s3Key": "amplify-builds/userConfirmed-476b726e6b39382b4c35-build.zip"
         }
       },
-      "api": {
-        "DocLock": {}
+      "auth": {
+        "doclock74b8bcb4": {}
+      }
+    }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-doclock-dev-112308-authRole",
+      "UnauthRoleArn": "arn:aws:iam::003991958217:role/amplify-doclock-dev-112308-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::003991958217:role/amplify-doclock-dev-112308-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-doclock-dev-112308-deployment",
+      "UnauthRoleName": "amplify-doclock-dev-112308-unauthRole",
+      "StackName": "amplify-doclock-dev-112308",
+      "StackId": "arn:aws:cloudformation:us-east-2:003991958217:stack/amplify-doclock-dev-112308/e4558c30-e7d7-11ed-b0b0-06b637622445",
+      "AmplifyAppId": "d6a4prq4t75un"
+    },
+    "categories": {
+      "function": {
+        "userConfirmed": {
+          "usersTableName": "Users-uunrk5ysuvbldlzr247cmz6qka-dev",
+          "deploymentBucketName": "amplify-doclock-dev-112308-deployment",
+          "s3Key": "amplify-builds/userConfirmed-476b726e6b39382b4c35-build.zip"
+        }
+      },
+      "auth": {
+        "doclock74b8bcb4": {}
       }
     }
   }

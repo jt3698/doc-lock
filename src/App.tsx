@@ -5,27 +5,33 @@ import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css'
 import './mvp.css'
 import { HomePage } from './pages/Home';
-import { Page1 } from './pages/Page1';
-import { Page2 } from './pages/Page2';
+import UploadPage from './pages/Upload';
+import ApprovePage from './pages/Approve';
 import { Header } from './components/Header';
+import { useState } from 'react';
+import { GetRole } from './queries/users';
 
 function App() {
+  const [userRole, setUserRole] = useState("null");
+  
   return (
     <div className="App"> 
       <Header></Header>  
       <Authenticator>
           {({ signOut, user }) => {
+              GetRole(user?.attributes?.sub).then((role) => setUserRole(role));
+              
               return (
                 <Routes>
                   <Route
-                    path="/page1"
-                    element={<Page1 />} />
+                    path="/approve"
+                    element={<ApprovePage user={user} role={userRole}/>} />
                   <Route
-                    path="/page2"
-                    element={<Page2 />} />
+                    path="/upload"
+                    element={<UploadPage />} />
                   <Route
                     path="/"
-                    element={<HomePage user={user} signOut={signOut} />} />
+                    element={<HomePage user={user} signOut={signOut} role={userRole}/>} />
                 </Routes>
               );
           }}

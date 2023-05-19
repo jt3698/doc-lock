@@ -1,5 +1,18 @@
+type Versions @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  version: Int!
+  Forms: Forms! @hasOne
+  approvedOn: AWSDateTime
+}
+
+type Forms @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  productName: String
+}
+
 type Users @model @auth(rules: [{allow: public}]) {
   id: ID
   email: String!
   admin: Boolean
-} 
+}
+ 

@@ -1,22 +1,25 @@
-import { useState } from "react";
 import { GetForm, GetLatestApproved, UploadForm, UploadVersion } from "../queries/versions";
+import { useCurrentForm } from "../contexts/FormContext";
 
 function UploadPage() {
-    const [version, setVersion] = useState(0);
-    const [productName, setProductName] = useState('');
+    const { 
+        latestApprovedForm, saveLatestApprovedForm
+    } = useCurrentForm();
 
     const getLatestApprovedVersion = () => {
         GetLatestApproved().then(({versionNumber, formID}) => {
             GetForm(formID).then((form) => {
-                setVersion(versionNumber);
-                setProductName(form.productName)
+                saveLatestApprovedForm({
+                    version: versionNumber,
+                    form: form.productName
+                })
             });
         });
     }
 
     const uploadChanges = () => {
-        UploadForm(productName).then((formId) => {
-            UploadVersion(version + 1, formId).then(() => console.log("Changes uploaded"));
+        UploadForm(latestApprovedForm.form).then((formId) => {
+            UploadVersion(latestApprovedForm.version + 1, formId).then(() => console.log("Changes uploaded"));
         })
     }
 
@@ -24,14 +27,17 @@ function UploadPage() {
         <div>
             <button onClick={getLatestApprovedVersion}>Get Latest Approved Version</button>
 
-            <h3>Current Version: {version}</h3>
+            <h3>Current Version: {latestApprovedForm.version}</h3>
             
             <form>
                 <label>Product Name
                     <input
                     type="text" 
-                    value={productName}
-                    onChange={(e) => setProductName(e.target.value)}
+                    value={latestApprovedForm.form}
+                    onChange={(e) => saveLatestApprovedForm({
+                        version: latestApprovedForm.version,
+                        form: e.target.value
+                    })}
                     />
                 </label>
             </form>

@@ -1,9 +1,10 @@
-function SignedIn(props: { signOut: any; userAttributes: any; role: any}) {
-  const signOut = props.signOut;
-  const userAttributes = props.userAttributes;
-  const role = props.role;
+import { useCurrentAuth } from "../contexts/AuthContext";
 
-  const email = userAttributes.email;
+function SignedIn(props: { signOut: any }) {
+  const signOut = props.signOut;
+
+  const { userAttributes, userRole } = useCurrentAuth();
+  const email = userAttributes?.email;
 
   return (
     <div>
@@ -11,7 +12,7 @@ function SignedIn(props: { signOut: any; userAttributes: any; role: any}) {
         <h3>You are authenticated</h3>
         
         <h3>Your email: {email}</h3>
-        <h3>Your role: {role}</h3>
+        <h3>Your role: {userRole}</h3>
 
         <button onClick={signOut}>Sign Out</button>
     </div>

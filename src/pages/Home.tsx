@@ -1,9 +1,7 @@
 import UserDetails from '../components/UserDetails';
 import SignedIn from './SignedIn';
 
-export const HomePage = (props: { signOut: any; user: any; role: any}) => {
-    const user = props.user;
-    const role = props.role;
+export const HomePage = (props: { signOut: any; }) => {
     const signOut = props.signOut;
     const env = process.env.NODE_ENV;
 
@@ -12,8 +10,6 @@ export const HomePage = (props: { signOut: any; user: any; role: any}) => {
             <p>Environment: {env}</p>
             
             <SignedIn 
-                userAttributes={user?.attributes}
-                role={role}
                 signOut={signOut}
             ></SignedIn>
 

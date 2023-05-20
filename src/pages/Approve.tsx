@@ -1,21 +1,28 @@
-import { useState } from "react";
 import { ApproveLatest, GetForm, GetLatestNotApproved } from "../queries/versions";
+import { useCurrentAuth } from "../contexts/AuthContext";
+import { useCurrentForm } from "../contexts/FormContext";
 
-function ApprovePage(props: { user: any; role: any}) {
-    const role = props.role;
+function ApprovePage() {
+    const { userRole } = useCurrentAuth();
 
-    const [version, setVersion] = useState(0);
-    const [productName, setProductName] = useState('');
+    const { 
+        latestNotApprovedForm, saveLatestNotApprovedForm
+    } = useCurrentForm();
 
     const getLatestNotApprovedVersion = () => {
         GetLatestNotApproved().then(({versionNumber, formID}) => {
             if (versionNumber !== 0) {
                 GetForm(formID).then((form) => {
-                    setVersion(versionNumber);
-                    setProductName(form.productName)
+                    saveLatestNotApprovedForm({
+                        version: versionNumber,
+                        form: form.productName
+                    })
                 });
             } else {
-                setVersion(versionNumber);
+                saveLatestNotApprovedForm({
+                    version: 0,
+                    form: ''
+                })
             }
         });
     }
@@ -24,21 +31,21 @@ function ApprovePage(props: { user: any; role: any}) {
         ApproveLatest().then(() => console.log("Changes approved"));
     }
 
-    if (role === "Admin") {
+    if (userRole === "Admin") {
         return (
             <div>
                 <button onClick={getLatestNotApprovedVersion}>Get Latest Changes to Approve</button>
 
                 {
-                    version === 0 ? <h3>No changes to approve</h3> : 
+                    latestNotApprovedForm.version === 0 ? <h3>No changes to approve</h3> : 
                     <>
-                        <h3>Approve Version {version}</h3>
+                        <h3>Approve Version {latestNotApprovedForm.version}</h3>
                 
                         <form>
                             <label>Product Name
                                 <input
                                 type="text" 
-                                value={productName}
+                                value={latestNotApprovedForm.form}
                                 disabled={true}
                                 readOnly={true}
                                 />

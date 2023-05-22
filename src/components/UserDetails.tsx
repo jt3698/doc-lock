@@ -1,12 +1,10 @@
-import { API } from "aws-amplify";
-import { listUsers } from "../graphql/queries";
+import { GetUsers } from "../queries/users";
 
-async function logUserDetails() {
+function logUserDetails() {
     // List all items
-    const allUsers = await API.graphql({
-        query: listUsers
-    });
-    console.log(allUsers);
+    GetUsers().then((allUsers) => {
+        console.log(allUsers);
+    })
 }
 
 function UserDetails() {

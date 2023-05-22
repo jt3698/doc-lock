@@ -3,8 +3,10 @@ import { getForms } from "../graphql/queries";
 import { listVersionsWithoutForms } from "../graphql/queriesCustom";
 import { createForms, createVersions, updateVersions } from "../graphql/mutations";
 
-// Return {productName} or Forms
+// Return {productName} or Form
 export async function GetForm(formID: string) {
+    console.log("GetForm called");
+
     const form : any = await API.graphql({
         query: getForms,
         variables: { id: formID }
@@ -15,6 +17,8 @@ export async function GetForm(formID: string) {
 
 // Return formID
 export async function UploadForm(productName: string) {
+    console.log("UploadForm called");
+    
     const newForms : any = await API.graphql({
         query: createForms,
         variables: {
@@ -29,6 +33,8 @@ export async function UploadForm(productName: string) {
 
 // Void
 export async function UploadVersion(version: any, formID: any) {
+    console.log("UploadVersion called");
+
     await API.graphql({
         query: createVersions,
         variables: {
@@ -39,11 +45,13 @@ export async function UploadVersion(version: any, formID: any) {
         }
     });
 
-    return
+    return;
 }
 
 // Return {versionNumber, formID, versionID}
 export async function GetLatestApproved() {
+    console.log("GetLatestApproved Called");
+
     const allVersions : any = await API.graphql({
         query: listVersionsWithoutForms
     });
@@ -63,7 +71,6 @@ export async function GetLatestApproved() {
                 }
             }
         }
-
     }
     
     return latestVersion;
@@ -71,6 +78,8 @@ export async function GetLatestApproved() {
 
 // Return {versionNumber, formID, versionID, createdAt}
 export async function GetLatestNotApproved() {
+    console.log("GetLatestNotApproved Called");
+
     const allVersions : any = await API.graphql({
         query: listVersionsWithoutForms
     });
@@ -105,9 +114,11 @@ export async function GetLatestNotApproved() {
 
 // Void
 export async function ApproveLatest() {
+    console.log("ApproveLatest Called");
+
     const latestNotApproved = await GetLatestNotApproved();
 
-    const updatedVersions = await API.graphql({
+    await API.graphql({
         query: updateVersions,
         variables: {
             input: {
@@ -116,4 +127,6 @@ export async function ApproveLatest() {
             }
         }
     });
+
+    return;
 }

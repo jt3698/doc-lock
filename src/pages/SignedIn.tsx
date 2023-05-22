@@ -1,7 +1,8 @@
+import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useCurrentAuth } from "../contexts/AuthContext";
 
-function SignedIn(props: { signOut: any }) {
-  const signOut = props.signOut;
+function SignedIn() {
+  const { signOut } = useAuthenticator((context) => [context.signOut]);
 
   const { userAttributes, userRole } = useCurrentAuth();
   const email = userAttributes?.email;

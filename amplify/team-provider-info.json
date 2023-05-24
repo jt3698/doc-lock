@@ -14,16 +14,17 @@
     "categories": {
       "function": {
         "userConfirmed": {
-          "usersTableName": "Users-nwgpf56twzblbpiu7isouymtm4-prod",
           "deploymentBucketName": "amplify-doclock-prod-122421-deployment",
-          "s3Key": "amplify-builds/userConfirmed-476b726e6b39382b4c35-build.zip"
+          "s3Key": "amplify-builds/userConfirmed-476b726e6b39382b4c35-build.zip",
+          "usersTableName": "Users-iwxaf2ztmfeatc2r7icf5mkmau-prod"
         }
       },
       "auth": {
         "doclock74b8bcb4": {}
       },
       "api": {
-        "DocLock": {}
+        "DocLock": {},
+        "doclock": {}
       }
     }
   },
@@ -42,16 +43,16 @@
     "categories": {
       "function": {
         "userConfirmed": {
-          "usersTableName": "Users-uunrk5ysuvbldlzr247cmz6qka-dev",
           "deploymentBucketName": "amplify-doclock-dev-112308-deployment",
-          "s3Key": "amplify-builds/userConfirmed-476b726e6b39382b4c35-build.zip"
+          "s3Key": "amplify-builds/userConfirmed-476b726e6b39382b4c35-build.zip",
+          "usersTableName": "Users-vwmem42x5fblxcbo4ugvntfsdq-dev"
         }
       },
       "auth": {
         "doclock74b8bcb4": {}
       },
       "api": {
-        "DocLock": {}
+        "doclock": {}
       }
     }
   }

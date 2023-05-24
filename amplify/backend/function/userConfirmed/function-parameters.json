@@ -4,10 +4,6 @@
     {
       "cloudFormationParameterName": "usersTableName",
       "environmentVariableName": "UsersTableName"
-    },
-    {
-      "cloudFormationParameterName": "usersTableName",
-      "environmentVariableName": "UsersTableName"
     }
   ]
 }

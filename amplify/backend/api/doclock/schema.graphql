@@ -15,4 +15,3 @@ type Users @model @auth(rules: [{allow: public}]) {
   email: String!
   admin: Boolean
 }
- 
